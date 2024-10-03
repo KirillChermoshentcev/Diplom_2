@@ -1,3 +1,4 @@
+import data
 from conftest import *
 from urls import Endpoints
 from data import UserData, UnfilledUserData
@@ -28,15 +29,13 @@ class TestCreateUser:
         }
         response = requests.post(Endpoints.CREATE_USER, json=payload)
         response_body = response.json()
-        assert response.status_code == 403 and response_body == {'success': False,
-                                                                 'message': 'User already exists'}
+        assert response.status_code == 403 and response_body == ResponseMessage.USER_ALREADY_EXIST
 
     @allure.title('Проверка регистрации пользователя при незаполнении одного из обязательных полей')
-    @pytest.mark.parametrize('data', UnfilledUserData.unfilled_data)
-    def test_create_user_without_required_data_success(self, data):
-        response = requests.post(Endpoints.CREATE_USER, data=data)
-        assert response.status_code == 403 and response.json() == {'success': False,
-                                                                   'message': 'Email, password and name are required fields'}
+    @pytest.mark.parametrize('user_data', UnfilledUserData.unfilled_data)
+    def test_create_user_without_required_data_success(self, user_data):
+        response = requests.post(Endpoints.CREATE_USER, data=user_data)
+        assert response.status_code == 403 and response.json() == ResponseMessage.UNFILLED_DATA
 
 
 

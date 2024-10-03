@@ -39,3 +39,24 @@ class BurgersData:
     burger_reciept_2 = ['61c0c5a71d1f82001bdaaa6c', '61c0c5a71d1f82001bdaaa6e', '61c0c5a71d1f82001bdaaa74']
 
     incorrect_cash_of_ingredients = ['61c0c5a71d1f82001b123456', '61c0c5a71d1f82001b654321', '61c0c5a71d1f82001b112233']
+
+
+class ResponseMessage:
+
+    USER_ALREADY_EXIST = {'success': False,
+                          'message': 'User already exists'}
+
+    UNFILLED_DATA = {'success': False,
+                     'message': 'Email, password and name are required fields'}
+
+    EMPTY_ORDER = {'success': False,
+                   'message': 'Ingredient ids must be provided'}
+
+    INCORRECT_INGREDIENT = {"success": False,
+                            "message": "One or more ids provided are incorrect"}
+
+    AUTHORIZATION_REQUIRED = {'success': False,
+                              'message': 'You should be authorised'}
+
+    INVALID_DATA = {"success": False,
+                    "message": "email or password are incorrect"}

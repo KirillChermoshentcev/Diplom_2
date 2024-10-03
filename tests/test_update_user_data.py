@@ -1,3 +1,4 @@
+import data
 from conftest import *
 from faker import Faker
 import requests
@@ -23,7 +24,6 @@ class TestUpdateUserData:
         response_body = response.json()
         assert response.status_code == 200
         assert response_body['user'][param] == new_value
-        print(response.text)
 
     @allure.title('Проверка возможности изменения любого поля неавторизованного пользователя')
     @pytest.mark.parametrize("param, new_value", [
@@ -36,7 +36,5 @@ class TestUpdateUserData:
                                   json={param: new_value})
         response_body = response.json()
         assert response.status_code == 401
-        assert response_body == {'success': False,
-                                 'message': 'You should be authorised'}
-        print(response.text)
+        assert response_body == ResponseMessage.AUTHORIZATION_REQUIRED
 

@@ -1,4 +1,6 @@
 import pytest
+
+import data
 from conftest import create_user
 import requests
 from urls import Endpoints
@@ -20,6 +22,5 @@ class TestLoginUser:
     @pytest.mark.parametrize('user_data', UserData.wrong_data)
     def test_login_with_incorrect_data_success(self, user_data):
         response = requests.post(f'{Endpoints.LOGIN}', data=user_data)
-        assert response.status_code == 401 and response.json() == {"success": False,
-                                                                   "message": "email or password are incorrect"}
+        assert response.status_code == 401 and response.json() == ResponseMessage.INVALID_DATA
 

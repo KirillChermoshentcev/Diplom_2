@@ -2,16 +2,16 @@ class Endpoints:
 
     BASE_URL = 'https://stellarburgers.nomoreparties.site/'
 
-    LOGIN = 'https://stellarburgers.nomoreparties.site/api/auth/login'
+    LOGIN = f'{BASE_URL}/api/auth/login'
 
-    CREATE_USER = 'https://stellarburgers.nomoreparties.site/api/auth/register'
+    CREATE_USER = f'{BASE_URL}/api/auth/register'
 
-    DELETE_USER = 'https://stellarburgers.nomoreparties.site/api/auth/user'
+    DELETE_USER = f'{BASE_URL}/api/auth/user'
 
-    UPDATE_USER_DATA = 'https://stellarburgers.nomoreparties.site/api/auth/user'
+    UPDATE_USER_DATA = f'{BASE_URL}/api/auth/user'
 
-    INGREDIENTS = 'https://stellarburgers.nomoreparties.site/api/ingredients'
+    INGREDIENTS = f'{BASE_URL}/api/ingredients'
 
-    CREATE_ORDER = 'https://stellarburgers.nomoreparties.site/api/orders'
+    CREATE_ORDER = f'{BASE_URL}/api/orders'
 
-    GET_USER_ORDERS = 'https://stellarburgers.nomoreparties.site/api/orders'
+    GET_USER_ORDERS = f'{BASE_URL}/api/orders'

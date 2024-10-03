@@ -1,3 +1,4 @@
+import data
 from conftest import *
 import allure
 
@@ -30,13 +31,11 @@ class TestCreateOrder:
             headers = {'Authorization': create_user[1]['accessToken']}
         response = requests.post(Endpoints.CREATE_ORDER, headers=headers, json=payload)
         assert response.status_code == 400
-        assert response.json() == {'success': False,
-                                   'message': 'Ingredient ids must be provided'}
+        assert response.json() == ResponseMessage.EMPTY_ORDER
 
     @allure.title('Проверка создания заказа с невалидным хэшем ингредиента')
     def test_create_order_with_incorrect_cash_of_ingredients_success(self, create_user):
         payload = {'ingredients': [BurgersData.incorrect_cash_of_ingredients]}
         headers = {'Authorization': create_user[1]['accessToken']}
         response = requests.post(Endpoints.CREATE_ORDER, headers=headers, data=payload)
-        assert response.status_code == 400 and response.json() == {"success": False,
-                                                                   "message": "One or more ids provided are incorrect"}
+        assert response.status_code == 400 and response.json() == ResponseMessage.INCORRECT_INGREDIENT
